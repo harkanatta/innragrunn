@@ -1,7 +1,13 @@
 ---
 title: "Örplast í hafinu við Ísland"
 subtitle: "Helstu uppsprettur, magn og farleiðir"
-author: "<br><br>Valtýr Sigurðsson &nbsp;`r anicon::faa('twitter', animate='float', rtext='@statsgen')`"
+author:   |
+  <br><br>
+  <span class="noem">Valtýr Sigurðsson</span>
+  <br><br>
+  <img src="images/tvologohex.png" width="15%" align="right" />
+  <br><br>
+  
 date: "<br><br>2019-09-05, Uppfært: `r format(Sys.time(), '%e. %B %Y')`"
 lang: is
 output:
@@ -20,63 +26,70 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-class: middle center bg-main1
+layout: true
+class: split-three with-thick-border
 
-# Kunoichi
-#⚔
-#くノ一
+.column.bg-main1[.content[
 
---
-## The Japanese word for female ninja
+# .orange[Hvað er örplast?]
+.nopadding[
+.img-fill[![](images/orplast_science.jpg)]
+]
+]]
+.column.bg-main2[.content[
+# .orange[Örplast] .black[á við um allar plastagnir smærri en] 
+# .orange[<span class=" faa-tada animated " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);"> 5 mm</span>]
+<br>
+# .orange[Þær eru þráðlaga, kúlulaga,] .black[reglulegar] og 
+# .orange[óreglulegar að lögun]
+<br>
+## .black[Sumar gerðir] .red[fljóta] .black[en aðrar] .red[sökkva] .black[eða mara í hálfu kafi í sjónum]
+]]
+.column.bg-main3[.content[
+# Erfitt .yellow[að sjá], og vandasamt að .yellow[rannsaka].
+<br>
+.img-fill[![](images/animated_plot.gif)]
 
---
-
-<img src="images/kunoichi.svg" width="40%">
+]]
 
 ---
 
-class: middle bg-main1
-
-
-## Now part of latest development version of `xaringan`
-<br>
-### `devtools::install_github('yihui/xaringan')`
-<br>
-### and add
-
-```
-output:
-  xaringan::moon_reader:
-    css: ["kunoichi", "ninjutsu"]
-```
-
+class: show-100
 
 ---
 
+class: show-110
+count: false
+???
+Erftiitr
+---
 
+count: false
+
+---
 layout: true
 class: split-two 
 
 .column.bg-main1[.content[
   .split-three[
  .row[.content[
- # You can have a border between splits:
+ # Helstu uppsprettur örplasts:
  ```{}
- class: split-two with-border
+ Mest magn kemur frá bifreiðaumferð
  ```
  ]]
   .row[.content[
-     # Or have it thicker
+     # Málning
  ```{}
- class: split-two with-thick-border
+ Næstmest kemur frá málningu
  ```
  ]]
    .row[.content[
-      # And easily change border colors
+      # Fleiri minni þættir
  ```{}
- class: split-two with-thick-border border-green
+ Fleiri minni þættir
  ```
- Note that to change row-wise border color here, you need to change `.split-three` to `.split-three.border-green`.
+ 
  ]]
  ]
 ]]
@@ -90,23 +103,92 @@ Define the layout and for sequence hide the appropriate cell.
 
 ---
 
-class: hide-row2-col1 hide-row3-col1 with-border
+class: hide-row2-col1 hide-row3-col1 with-thick-border
 
-![](images/lee_thin.png)
+```{r Sank, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, out.height="100%"}
+
+#losun <- (l+h)/2 #Meðaltal lægra og hærra mats á losun.
+value <- c(371, 41, 26, 33.2, 60, 3, 0.2, 8.2, 0.34, 1, 0.002) #Uppspretta lægra mat
+losun <- c(164, 5.7,  0, 15.2, 3.2, 0.3, 0, 8.2, 0.34, 0, 0.002) #losun lægra mat
+#value <- c(379,586,38,233,21,48,3,11,8,32,0.3,3)
+heiti <- c('Bifreiðahjólbarðar',
+          'Vegmerkingar',
+          'Flugvélahjólbarðar',
+          'Húsamálning',
+          'Skipamálning',
+          'Gervigras',
+          'Leikvellir',
+          'Þvottur',
+          'Snyrtivörur',
+          'Haglaskot',
+          'Sigvatn')
+land <- value-losun
+df <- data.frame(heiti,land,losun)
+df <- df[order(df$heiti),]
+
+library(networkD3)
+nodes <- c(levels(df$heiti), 'Land','Haf')
+nodes <- as.data.frame(nodes)
+names(nodes) <- "name"
+
+a <- list()
+for (i in 1:nrow(df)) {
+  a[i] <- list(rbind(matrix(c(df[i,c(2,3)]))))
+}
+b <- do.call(c,a)
+value <- unlist(b)
+
+links <- 
+  data.frame(
+    source=c(0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10),
+    target=c(rep(c(11,12),11)),
+    value=value)
+
+
+Sank <- list(nodes, links)
+names(Sank) <- c('nodes', 'links')
+sn <- sankeyNetwork(
+  Links = Sank$links,
+  Nodes = Sank$nodes,
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  units = "tonn",
+  colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"),
+  fontSize = 20,
+  nodeWidth = 30, height = "681px", fontFamily = "Courier",
+)
+#sn
+library(widgetframe)
+rammi <- frameWidget(sn)
+rammi
+
+```
+
+???
+
+Stærsta uppspretta örplasts í umhverfinu á Íslandi, sem lagt var mat á, er tengd bifreiðaumferð. Slit á dekkjum og vegmerkingum er um 60-85% örplastslosunar á Íslandi. 
+Næst þar á eftir kemur húsamálning
+Skipamálning í stóru slippunum er stór uppspretta í mikilli nálægð við hafið (fer eftir vinnubrögðum við málun og ekki síst þrif hversu mikið lendir í hafinu)
+---
+
+class: fade-row1-col1 hide-row3-col1 with-thick-border 
+count: false
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, out.height="100%"}
+rammi
+```
+
 
 ---
 
-class: hide-row1-col1 hide-row3-col1 with-thick-border 
+class: fade-row1-col1 fade-row2-col1 with-thick-border
 count: false
 
-![](images/lee_thick.png)
-
----
-
-class: hide-row1-col1 hide-row2-col1 with-thick-border border-green
-count: false
-
-![](images/lee_thick_green.png)
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, out.height="100%"}
+rammi
+```
 
 ---
 
