@@ -20,8 +20,42 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
----
 
+---
+layout: false
+class: split-two with-thick-border border-cyan
+.column.bg-white[
+  .split-two[
+.row.bg-white[.content.vmiddle[.center[
+  .nopadding[
+.img-fill[![](images/Biopol_synataka.jpg)]
+]
+  ]]]
+  .row.bg-white[.content.vmiddle[.center[
+  .nopadding[
+.img-fill[![](images/biopol_karin.jpg)]
+]
+  ]]]
+]]
+
+.column.bg-main1[.content[
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+.column.slide-in-right[
+.sliderbox.vmiddle.shade_main.center[
+# Sýnatökur og úrvinnsla 
+<br><br>
+# hjá Biopol á Skagaströnd
+<br><br>
+<br><br>
+`r anicon::cia("images/zeropoint_logo.jpg", animate="ring", size=6, anitype="parent-hover")`
+]]
+]]
+---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
@@ -83,8 +117,8 @@ class: split-33
 ## `r anicon::nia("Gervigras og leiksvæði", animate="burst", anitype="parent-hover")`
 ## `r anicon::nia("Þvottur", animate="burst", anitype="parent-hover")`
 ## `r anicon::nia("Snyrtivörur", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Veiðarfæri", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Rusl í fjörum", animate="burst")`
+## `r anicon::nia("Veiðarfæri", animate="passing", speed="slow")`
+## `r anicon::nia("Rusl í fjörum", animate="passing", speed="slow")`
 ]]
 .column[.content[
 .center[
@@ -94,48 +128,55 @@ knitr::include_graphics("images/samansetning.png")
 
 ]]]
 
+
+
+???
+Veiðarfæri þarf að rannsaka betur. Sum veiðarfæri trosna við notkun og losnar nælon ofl. örplast þannig beint í hafið. Þetta er ekki flókinn iðnaður þá að hann sé stórtækur og því ætti að vera hægt að fylgjast betur með því hve mikið af veiðarfærum er í umferð
+
 ---
-layout: false
-class: split-two with-border
-.column.bg-main1[
-  .split-two[
-  .row.bg-white[.content.vmiddle[.center[
-   `r anicon::cia("images/ALTA.png", animate="pulse", speed="slow", anitype="parent-hover", size=7)`
-  ]]]
-  .row.bg-white[.content.vmiddle[.center[
-    `r anicon::cia("images/map.png", animate="pulse", speed="slow", anitype="parent-hover", size=20)`
-  ]]]
-  
+
+
+layout: true
+class: split-two with-border border-black
+
+.column[
+  .split-three[
+  .row.bg-main1[.content[
+### Now let's show the `gray` and `fade` features. 
+  ]]
+  .row.bg-main2[.content[
+### You can use it the same as `hide` but replace with `fade` or `gray`
+  ]]
+  .row.bg-main3[.content[
+### You can combine both as needed.
+  ]]
+
 ]]
 .column[.content[
-```{r skolp, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, dev.args=list(bg="transparent"), out.width='100%'}
-
-par(mar=c(4,4,4,2))
-
-roundUpNice <- function(x, nice=c(1,2,4,5,6,8,10)) {
-  if(length(x) != 1) stop("'x' must be of length 1")
-  10^floor(log10(x)) * nice[[which(x <= 10^floor(log10(x)) * nice)[[1]]]]
-} # https://stackoverflow.com/questions/6461209/how-to-round-up-to-the-nearest-10-or-100-or-x
-
-skólptölur <- read.csv("skjol/skolp_urban.csv", sep="\t",encoding = "UTF-8")
-skólptölur <- skólptölur[!is.na(skólptölur$Magn.skólps..pe..)& skólptölur$Magn.skólps..pe..>0,]
-levels(skólptölur$Tegund.hreinsunar) <- c("Eins þreps","Ekki vitað","Engin","Ítarleg","Ítarleg","Ítarleg","Rotþrær","Tveggja þrepa","Tveggja þrepa") #Hreinsa gögnin
-require(plyr)
-svaedi <- ddply(skólptölur,.(Svæði,Tegund.hreinsunar),summarise,Magn=sum(Magn.skólps..pe..),.drop=F)
-skólp_fylki <- matrix(svaedi$Magn,nrow = length(levels(as.factor(svaedi$Tegund.hreinsunar))),ncol = length(unique(svaedi$Svæði)),dimnames=list(levels(as.factor(svaedi$Tegund.hreinsunar)),levels(svaedi$Svæði)))
-
-landshlutar <- c('(NV)','(NA)','(SA)','(SV)')
-colnames(skólp_fylki) <- paste(unique(svaedi$Svæði),landshlutar,sep="\n")
-
-litir <- c('#7ECEF0','white','#CB5600', '#7F7CAF','#28587B','seashell')
-bp <- barplot(skólp_fylki,ylab='',xlab='',axes=F,beside=TRUE,ylim=c(0,max(skólp_fylki)*1.1))
-abline(h=seq(0,roundUpNice(1.1*max(skólp_fylki)),roundUpNice(1.1*max(skólp_fylki))/5), col = 'lightgray', lty = 3)
-barplot(skólp_fylki, main='Tegund skólphreinsunar', ylab="Magn (þúsundir pe.)", beside=TRUE, axes = F, col=litir ,ylim = c(0,max(skólp_fylki)*1.1),add=T);box()
-axis(2,seq(0,roundUpNice(1.1*max(skólp_fylki)),roundUpNice(1.1*max(skólp_fylki))/5),labels = seq(0,roundUpNice(1.1*max(skólp_fylki))/1000,roundUpNice(1.1*max(skólp_fylki))/5000),las=2)
-legend('topleft', levels(as.factor(svaedi$Tegund.hreinsunar)), fill=litir)
-```
+  .split-two[
+  .row.bg-white[.content.vmiddle[.center[
+   .nopadding[
+.img-fill[![](images/ALTA.png)]
+]
+  ]]]
+  .row.bg-white[.content.vmiddle[.center[
+   .nopadding[
+.img-fill[![](images/map.png)]
+]
+  ]]]
+  
+]
 ]]
 
+
+---
+class: gray-row2-col1 gray-row3-col1 
+---
+count: false
+class: gray-row1-col1 gray-row3-col1 
+---
+count: false
+class: gray-row1-col1 gray-row2-col1 
 
 
 ???
@@ -144,9 +185,9 @@ Tegund skólphreinsunar skipt eftir fjórum flokkum náttúrulegra yfirborðsvat
 Þegar losun örplasts á Íslandi er skoðuð er rétt að taka suðvestur horn landsins út fyrir sviga. Þar sem helsta farleið örplasts er með rennandi vatni er hér notast við skiptingu íslenska vatnaumdæmisins í fjögur meginvatnasvæði73. Á suðvesturhorni landsins er vatnasvæði sem rennur í Faxaflóa (sjá mynd 3.1). Á því svæði býr yfir 3/4 hlutar landsmanna3 og þar er summa árdagsumferðar rúmir 3/4 hlutar á landsvísu. Flatarmál bygginga þar er yfir 50% flatarmáls allra bygginga á landsvísu74 en flatarmál málaðra flata eflaust enn meiri vegna byggingarhæðar. Flestir landsmenn fara til Reykjavíkur reglulega til að sækja þjónustu sem þar er í boði, nær allar vöruflutningar eru um svæðið og nærri allt millilandaflug. Þrír stórir slippir af fjórum eru á Höfuðborgarsvæðinu og í Grindavík. Það er því rík ástæða til að skoða þetta svæði betur.
 
 Mynd birt með góðfúslegu leyfi Alta
-
-
 ---
+
+
 
 layout: false
 class: split-33
