@@ -40,73 +40,127 @@ class: split-three with-thick-border
 # .orange[Örplast] .black[á við um allar plastagnir smærri en] 
 # .orange[<span class=" faa-tada animated " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);"> 5 mm</span>]
 <br>
-# .orange[Þær eru þráðlaga, kúlulaga,] .black[reglulegar] og 
-# .orange[óreglulegar að lögun]
+# .orange[Það eyðist ekki.] .black[Ber með sér eiturefni] og .orange[nýjar tegundir] .black[á milli hafsvæða]
 <br>
-## .black[Sumar gerðir] .red[fljóta] .black[en aðrar] .red[sökkva] .black[eða mara í hálfu kafi í sjónum]
+### .black[Sumar gerðir] .red[fljóta] .black[en aðrar] .red[sökkva] .black[eða mara í hálfu kafi í sjónum].
 ]]
 .column.bg-main3[.content[
-# Erfitt .yellow[að sjá], og vandasamt að .yellow[rannsaka].
+# .white[Erfitt] .yellow[að sjá] .white[ og vandasamt að] .yellow[rannsaka].
 <br>
 .img-fill[![](images/animated_plot.gif)]
-
+# .orange[Hvaðan kemur örplast?]
 ]]
 
 ---
-
 class: show-100
 
+???
+Þetta er sýni úr sjávarseti og þarna má sjá þræði úr fatnaði eða veiðarfærum og fleiri plastagnir sem hafa verið teknar frá öllu hinu gumsinu í sýninu.
 ---
-
 class: show-110
 count: false
 ???
-Erftiitr
+Örplast er jafn fjölbreytt og plast er almennt og það er flest hannað til þess að endast
 ---
-
 count: false
 
+???
+Við höfum ekki ennþá sammælst um standard aðferðir við að greina örplast
+
 ---
-layout: true
-class: split-two 
 
-.column.bg-main1[.content[
-  .split-three[
- .row[.content[
- # Helstu uppsprettur örplasts:
- ```{}
- Mest magn kemur frá bifreiðaumferð
- ```
- ]]
-  .row[.content[
-     # Málning
- ```{}
- Næstmest kemur frá málningu
- ```
- ]]
-   .row[.content[
-      # Fleiri minni þættir
- ```{}
- Fleiri minni þættir
- ```
- 
- ]]
- ]
+layout: false
+class: split-33
+
+.column.bg-main2[.content.vmiddle[
+.center[
+# Helstu uppsprettur
+]
+<br><br>
+## `r anicon::nia("Bifreiðahjólbarðar", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Vegmerkingar", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Málning", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Gervigras og leiksvæði", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Þvottur", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Snyrtivörur", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Veiðarfæri", animate="burst", anitype="parent-hover")`
+## `r anicon::nia("Rusl í fjörum", animate="burst")`
+]]
+.column[.content[
+.center[
+```{r echo=FALSE, message=FALSE, warning=FALSE, out.width="85%"}
+knitr::include_graphics("images/samansetning.png")
+```
+
+]]]
+
+---
+layout: false
+class: split-two with-border
+.column.bg-main1[
+  .split-two[
+  .row.bg-white[.content.vmiddle[.center[
+   `r anicon::cia("images/ALTA.png", animate="pulse", speed="slow", anitype="parent-hover", size=7)`
+  ]]]
+  .row.bg-white[.content.vmiddle[.center[
+    `r anicon::cia("images/map.png", animate="pulse", speed="slow", anitype="parent-hover", size=20)`
+  ]]]
+  
+]]
+.column[.content[
+```{r skolp, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, dev.args=list(bg="transparent"), out.width='100%'}
+
+par(mar=c(4,4,4,2))
+
+roundUpNice <- function(x, nice=c(1,2,4,5,6,8,10)) {
+  if(length(x) != 1) stop("'x' must be of length 1")
+  10^floor(log10(x)) * nice[[which(x <= 10^floor(log10(x)) * nice)[[1]]]]
+} # https://stackoverflow.com/questions/6461209/how-to-round-up-to-the-nearest-10-or-100-or-x
+
+skólptölur <- read.csv("skjol/skolp_urban.csv", sep="\t",encoding = "UTF-8")
+skólptölur <- skólptölur[!is.na(skólptölur$Magn.skólps..pe..)& skólptölur$Magn.skólps..pe..>0,]
+levels(skólptölur$Tegund.hreinsunar) <- c("Eins þreps","Ekki vitað","Engin","Ítarleg","Ítarleg","Ítarleg","Rotþrær","Tveggja þrepa","Tveggja þrepa") #Hreinsa gögnin
+require(plyr)
+svaedi <- ddply(skólptölur,.(Svæði,Tegund.hreinsunar),summarise,Magn=sum(Magn.skólps..pe..),.drop=F)
+skólp_fylki <- matrix(svaedi$Magn,nrow = length(levels(as.factor(svaedi$Tegund.hreinsunar))),ncol = length(unique(svaedi$Svæði)),dimnames=list(levels(as.factor(svaedi$Tegund.hreinsunar)),levels(svaedi$Svæði)))
+
+landshlutar <- c('(NV)','(NA)','(SA)','(SV)')
+colnames(skólp_fylki) <- paste(unique(svaedi$Svæði),landshlutar,sep="\n")
+
+litir <- c('#7ECEF0','white','#CB5600', '#7F7CAF','#28587B','seashell')
+bp <- barplot(skólp_fylki,ylab='',xlab='',axes=F,beside=TRUE,ylim=c(0,max(skólp_fylki)*1.1))
+abline(h=seq(0,roundUpNice(1.1*max(skólp_fylki)),roundUpNice(1.1*max(skólp_fylki))/5), col = 'lightgray', lty = 3)
+barplot(skólp_fylki, main='Tegund skólphreinsunar', ylab="Magn (þúsundir pe.)", beside=TRUE, axes = F, col=litir ,ylim = c(0,max(skólp_fylki)*1.1),add=T);box()
+axis(2,seq(0,roundUpNice(1.1*max(skólp_fylki)),roundUpNice(1.1*max(skólp_fylki))/5),labels = seq(0,roundUpNice(1.1*max(skólp_fylki))/1000,roundUpNice(1.1*max(skólp_fylki))/5000),las=2)
+legend('topleft', levels(as.factor(svaedi$Tegund.hreinsunar)), fill=litir)
+```
 ]]
 
-.column.bg-main1[.content.center.vmiddle[
-{{content}}
-]]
+
 
 ???
-Define the layout and for sequence hide the appropriate cell.
+Tegund skólphreinsunar skipt eftir fjórum flokkum náttúrulegra yfirborðsvatnshlota. Unnið upp úr samantekt á stöðu skólpmála á Íslandi árið 2014 [@Umhverfisstofnun2017].
+
+Þegar losun örplasts á Íslandi er skoðuð er rétt að taka suðvestur horn landsins út fyrir sviga. Þar sem helsta farleið örplasts er með rennandi vatni er hér notast við skiptingu íslenska vatnaumdæmisins í fjögur meginvatnasvæði73. Á suðvesturhorni landsins er vatnasvæði sem rennur í Faxaflóa (sjá mynd 3.1). Á því svæði býr yfir 3/4 hlutar landsmanna3 og þar er summa árdagsumferðar rúmir 3/4 hlutar á landsvísu. Flatarmál bygginga þar er yfir 50% flatarmáls allra bygginga á landsvísu74 en flatarmál málaðra flata eflaust enn meiri vegna byggingarhæðar. Flestir landsmenn fara til Reykjavíkur reglulega til að sækja þjónustu sem þar er í boði, nær allar vöruflutningar eru um svæðið og nærri allt millilandaflug. Þrír stórir slippir af fjórum eru á Höfuðborgarsvæðinu og í Grindavík. Það er því rík ástæða til að skoða þetta svæði betur.
+
+Mynd birt með góðfúslegu leyfi Alta
+
 
 ---
 
-class: hide-row2-col1 hide-row3-col1 with-thick-border
+layout: false
+class: split-33
 
-```{r Sank, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, out.height="100%"}
+.column.bg-main2[.content.vmiddle[
+.center[
+# Helstu uppsprettur
 
+<br><br>
+Magn
+]]]
+.column[.content[
+.center[
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
 #losun <- (l+h)/2 #Meðaltal lægra og hærra mats á losun.
 value <- c(371, 41, 26, 33.2, 60, 3, 0.2, 8.2, 0.34, 1, 0.002) #Uppspretta lægra mat
 losun <- c(164, 5.7,  0, 15.2, 3.2, 0.3, 0, 8.2, 0.34, 0, 0.002) #losun lægra mat
@@ -157,11 +211,95 @@ sn <- sankeyNetwork(
   units = "tonn",
   colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"),
   fontSize = 20,
-  nodeWidth = 30, height = "681px", fontFamily = "Courier",
+  nodeWidth = 30, height = "681px", fontFamily = "Courier"
 )
-#sn
-library(widgetframe)
-rammi <- frameWidget(sn)
+rammi <- widgetframe::frameWidget(sn)
+rammi
+
+```
+
+]]]
+
+???
+fig.cap='Helstu uppsprettur örplasts á Íslandi og skipting þess eftir farleiðum í haf eða í jarðveg. Byggt á lægra mati.',
+
+---
+
+layout: true
+class: split-two with-border border-white
+
+.column.bg-main3[.content[
+  .split-five[
+ .row[.content[
+`Dekkjakurl berst til hafs í gegnum ræsi í þéttbýli en festist að mestu í jarðveginum við vegina`
+ ]]
+  .row[.content[
+`Vegmerkingar berast með sömu leiðum til hafs`
+ ]]
+  .row[.content[
+`Útimálning berst einnig með affallsvatni gegnum ræsi en innimálningu er gjarnan hellt` `r anicon::nia("beint í sjóinn", animate="pulse")`
+ ]]
+  .row[.content[
+`Bæði eyðing á „grasinu“ sjálfu og dekkjakurl sem berst í ræsi`
+ ]]
+   .row[.content[
+ `Snyrtivörur; aðallega handsápa af verkstæðum `
+ ]]
+ ]
+]]
+
+.column.bg-white[.content.center.vmiddle[
+{{content}}
+]]
+
+???
+Define the layout and for sequence hide the appropriate cell.
+
+---
+
+class: hide-row2-col1 hide-row3-col1 hide-row4-col1 hide-row5-col1 with-thick-border border-white
+
+```{r dekk, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
+value=c(244,34,22,79) 
+losun=c(106,15,9,34)
+land=value-losun
+
+
+heiti <- c("Fólksbifreiðar ","Sendibifreiðar ","Hópbifreiðar ","Vörubifreiðar ")
+df <- data.frame(heiti,land,losun)
+df <- df[order(df$heiti),]
+nodes <- c(levels(df$heiti), 'Land','Haf')
+nodes <- as.data.frame(nodes)
+names(nodes) <- "name"
+
+a <- list()
+for (i in 1:nrow(df)) {
+  a[i] <- list(rbind(matrix(c(df[i,c(2,3)]))))
+}
+b <- do.call(c,a)
+value <- unlist(b)
+
+links <- 
+  data.frame(
+    source=rep(seq(0,length(heiti)-1),each=2),
+    target=c(rep(c(length(heiti),length(heiti)+1),length(heiti))),
+    value=value)
+	
+Sank <- list(nodes, links)
+names(Sank) <- c('nodes', 'links')
+sn <- sankeyNetwork(
+  Links = Sank$links,
+  Nodes = Sank$nodes,
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  units = "tonn",
+  colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"),
+  fontSize = 20,
+  nodeWidth = 30, width = "770px", height = "500px", fontFamily = "Courier"
+)
+rammi <- widgetframe::frameWidget(sn)
 rammi
 
 ```
@@ -173,829 +311,146 @@ Næst þar á eftir kemur húsamálning
 Skipamálning í stóru slippunum er stór uppspretta í mikilli nálægð við hafið (fer eftir vinnubrögðum við málun og ekki síst þrif hversu mikið lendir í hafinu)
 ---
 
-class: fade-row1-col1 hide-row3-col1 with-thick-border 
+class: fade-row1-col1 hide-row3-col1 hide-row4-col1 hide-row5-col1 with-thick-border border-white
 count: false
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, out.height="100%"}
+```{r vegmerkingar, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
+nodes <- c('Stærri sveitarfélög ','Minni sveitarfélög ','Vegagerðin ','Sprautuplast ','Vegamálning ','Uppspretta lægra mat ','Uppspretta hærra mat ','Losun í haf lægra mat','Losun í haf hærra mat')
+nodes <- as.data.frame(nodes)
+names(nodes) <- "name"
+#nodes$name <-  as.character(nodes$name)
+links <- data.frame(source=c(0,1,2,2,3,4,3,4,5,6),target=c(3,4,3,4,5,5,6,6,7,8),value=c(110,15,543,218,6,35,163,93,5.7,42.6))
+rass <- list(nodes,links)
+names(rass) <- c('nodes','links')
+sn <- sankeyNetwork(Links = rass$links,
+                    Nodes = rass$nodes,
+                    Source = "source",
+                    Target = "target",
+                    Value = "value",
+                    NodeID = "name",
+                    units = "Tonn",
+                    fontSize = 20,
+                    nodeWidth = 30,
+                    width = "770px",
+                    height = "500px",
+                    fontFamily = "Courier"
+                    )
+rammi <- widgetframe::frameWidget(sn)
 rammi
 ```
 
-
 ---
 
-class: fade-row1-col1 fade-row2-col1 with-thick-border
+class: fade-row1-col1 fade-row2-col1 hide-row4-col1 hide-row5-col1 with-thick-border border-white
 count: false
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, out.height="100%"}
+```{r malning, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
+value <- c(30,3.2)
+losun <- c(12,3.2)
+heiti <- c("Útimálning","Innimálning")
+land <- value-losun
+df <- data.frame(heiti,land,losun)
+df <- df[order(df$heiti),]
+
+library(networkD3)
+nodes <- c(levels(df$heiti), 'Land','Haf')
+nodes <- as.data.frame(nodes)
+names(nodes) <- "name"
+
+a <- list()
+for (i in 1:nrow(df)) {
+  a[i] <- list(rbind(matrix(c(df[i,c(2,3)]))))
+}
+b <- do.call(c,a)
+value <- unlist(b)
+
+links <- 
+  data.frame(
+    source=rep(seq(0,length(heiti)-1),each=2),
+    target=c(rep(c(length(heiti),length(heiti)+1),length(heiti))),
+    value=value)
+
+
+Sank <- list(nodes, links)
+names(Sank) <- c('nodes', 'links')
+sn <- sankeyNetwork(
+  Links = Sank$links,
+  Nodes = Sank$nodes,
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  units = "tonn",
+  colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"),
+  fontSize = 20,
+  nodeWidth = 30, width = "770px", height = "500px", fontFamily = "Courier"
+)
+rammi <- widgetframe::frameWidget(sn)
 rammi
 ```
 
 ---
+class: fade-row1-col1 fade-row2-col1 fade-row3-col1 hide-row5-col1 with-thick-border border-white
+count: false
 
+```{r gervigras, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
+gervigras <- read.table("skjol/gervigras.csv",sep = ';',encoding = 'ISO 8859-1',header = T,dec = ',',stringsAsFactors = F)
+gervigras$Ferm. <- as.numeric(gervigras$Ferm.)
+gervigras$Gerð <- as.factor(gervigras$Gerð)
+#motta <- gervigras[regexpr("motta",gervigras$Tegund.grass.og.fylliefnis)!=(-1),] #minnkar tap á kurli um 50%
+#sand <- gervigras[regexpr("sand",gervigras$Tegund.grass.og.fylliefnis)!=(-1),]
+gervigras$studull <- c()
+gervigras[ rownames(gervigras[regexpr("motta",gervigras$Tegund.grass.og.fylliefnis)!=(-1),]),"studull"] <- "motta"
+gervigras[ rownames(gervigras[regexpr("sand",gervigras$Tegund.grass.og.fylliefnis)!=(-1),]),"studull"] <- "sandur"
+
+gervigras$kurl.lagt <- ifelse(is.na(gervigras$studull),gervigras$Ferm.*0.16,
+                              ifelse(gervigras$studull=="motta",gervigras$Ferm.*0.16*0.5,0))
+gervigras$kurl.hatt <- ifelse(is.na(gervigras$studull),gervigras$Ferm.*0.6,
+                              ifelse(gervigras$studull=="motta",gervigras$Ferm.*0.6*0.5,0))
+gervigras$slit.lagt <- gervigras$Ferm.*0.8*0.005
+gervigras$slit.hatt <- gervigras$Ferm.*1.4*0.008
+
+library(plyr)
+fermetrar <- ddply(gervigras,.(Gerð),summarise,m2=mean(Ferm.),slit.lagt=mean(slit.lagt)*0.001,slit.hatt=mean(slit.hatt)*0.001,kurl.lagt=mean(kurl.lagt)*0.001,kurl.hatt=mean(kurl.hatt)*0.001)
+
+# "Æfingavellir og smærri hús" "Keppnishús"
+# "Keppnisvellir"              "Sparkvellir"
+# "Sparkvellir (KSÍ)"
+library(networkD3)
+nodes <- c(as.character(fermetrar$Gerð),
+           "Slit lægra mat",
+           "Slit hærra mat",
+           "Gúmmíkurl lægra mat",
+           "Gúmmíkurl hærra mat")
+nodes <- as.data.frame(nodes)
+names(nodes) <- "name"
+#nodes$name <-  as.character(nodes$name)
+links <- data.frame(source=rep(c(0,1,2,3,4),each=4),target=rep(5:8,5),value=matrix(t(fermetrar[1:5,3:6])))
+rass <- list(nodes,links)
+names(rass) <- c('nodes','links')
+sn <- sankeyNetwork(Links = rass$links, Nodes = rass$nodes, Source = "source",Target = "target", Value = "value", NodeID = "name",units = "Tonn", fontSize = 20,nodeWidth = 30,width = "770px",height = "500px",fontFamily = "Courier")
+rammi <- widgetframe::frameWidget(sn)
+rammi
+```
+
+---
+class: fade-row1-col1 fade-row2-col1 fade-row3-col1 fade-row4-col1 with-thick-border border-white
+count: false
+
+```{r homer, echo=FALSE, message=FALSE, warning=FALSE}
+mynd <- knitr::include_graphics("images/sapa.jpg")
+mynd
+```
+
+---
 layout: false
-class: split-three white
-
-.column.bg-red[.content[
-# A .yellow[kunoichi] can use .yellow[ninpo] to easily .green[transform colors].
-```{}
-class: split-three white
-```
-```{r, eval=F}
-{{.column.bg-red[.content[}}
-  content of first column
-  ]]
-{{.column.bg-blue[.content[}}
-  content of second column
-]]
-{{.column.bg-green[.content[}}
-  content of third column
-]]
-```
-]]
-.column.bg-blue[.content[
-# You can easily .red[change text color] as well
-```{r, eval=F}
-.bg-white[
-.red[this will be red]
-.green[this will be green]
-]
-```
-Output:
-.bg-white[
-.red[this will be red]
-.green[this will be green]
-]
-
-## Some available colors are:
-.center[
-.bg-brown.pad1[.brown] .bg-gray.pad1[.gray] .bg-blue-gray.pad1[.blue-gray] <br><br><br>
-.bg-white.pad1.black[.white] .bg-black.pad1[.black]
-]
-<br>
-### Other list of predefined colors [here](#color).
-
-]]
-.column.bg-green[.content[
-# .yellow[kunoichi] theme comes with four pre-defined shades of purple:
-<br>
-.center[
-.bg-main1.pad1[.bg-main1] <br><br><br><br>
-.bg-main2.pad1[.bg-main2] <br><br><br><br>
-.bg-main3.pad1[.bg-main3] <br><br><br><br>
-.bg-main4.pad1[.bg-main4]
-]
-]]
-
-
-
----
-
-name: color
-class: split-four black with-thick-border center middle border-white bg-black
-
-.column[
-.split-four[
-.row[.content.red[
-# Row-1, Col-1
-# .red
-]]
-.row.pink[.content[
-# Row-2, Col-1
-# .pink
-]]
-.row.purple[.content[
-# Row-3, Col-1
-# .purple
-]]
-.row.deep-purple[.content[
-# Row-4, Col-1
-# .deep-purple
-]
-]]
-]
-
-.column[
-.split-four[
-.row.cyan[.content[
-# Row-1, Col-2
-# .cyan
-]]
-.row.light-blue[.content[
-# Row-2, Col-2
-# .light-blue
-]]
-.row.blue[.content[
-# Row-3, Col-2
-# .blue
-]]
-.row.indigo[.content[
-# Row-4, Col-2
-# .indigo
-]
-]]
-]
-
-.column[
-.split-four[
-.row.teal[.content[
-# Row-1, Col-3
-# .teal
-]]
-.row.green[.content[
-# Row-2, Col-3
-# .green
-]]
-.row.light-green[.content[
-# Row-3, Col-3
-# .light-green
-]]
-.row.lime[.content[
-# Row-4, Col-3
-# .lime
-]
-]]
-]
-
-.column[
-.split-four[
-.row.deep-orange[.content[
-# Row-1, Col-4
-# .deep-orange
-]]
-.row.orange[.content[
-# Row-2, Col-4
-# .orange
-]]
-.row.amber[.content[
-# Row-3, Col-4
-# .amber
-]]
-.row.yellow[.content[
-# Row-4, Col-4
-# .yellow
-]
-]]
-]
-
-<span style="position:absolute; top:48%; left:28%;z-index:1;background-color:white; font-size:3em; padding:0.2em;color:black">Material UI colors</span>
-
----
-
-
-class: split-four white with-thick-border center middle
-
-.column[
-.split-four[
-.row.bg-red[.content[
-# Row-1, Col-1
-# .bg-red
-]]
-.row.bg-pink[.content[
-# Row-2, Col-1
-# .bg-pink
-]]
-.row.bg-purple[.content[
-# Row-3, Col-1
-# .bg-purple
-]]
-.row.bg-deep-purple[.content[
-# Row-4, Col-1
-# .bg-deep-purple
-]
-]]
-]
-
-.column[
-.split-four[
-.row.bg-cyan[.content[
-# Row-1, Col-2
-# .bg-cyan
-]]
-.row.bg-light-blue[.content[
-# Row-2, Col-2
-# .bg-light-blue
-]]
-.row.bg-blue[.content[
-# Row-3, Col-2
-# .bg-blue
-]]
-.row.bg-indigo[.content[
-# Row-4, Col-2
-# .bg-indigo
-]
-]]
-]
-
-.column[
-.split-four[
-.row.bg-teal[.content[
-# Row-1, Col-3
-# .bg-teal
-]]
-.row.bg-green[.content[
-# Row-2, Col-3
-# .bg-green
-]]
-.row.bg-light-green[.content[
-# Row-3, Col-3
-# .bg-light-green
-]]
-.row.bg-lime[.content[
-# Row-4, Col-3
-# .bg-lime
-]
-]]
-]
-
-.column[
-.split-four[
-.row.bg-deep-orange[.content[
-# Row-1, Col-4
-# .bg-deep-orange
-]]
-.row.bg-orange[.content[
-# Row-2, Col-4
-# .bg-orange
-]]
-.row.bg-amber[.content[
-# Row-3, Col-4
-# .bg-amber
-]]
-.row.bg-yellow[.content[
-# Row-4, Col-4
-# .bg-yellow
-]
-]]
-]
-
-<span style="position:absolute; top:48%; left:28%;z-index:1;background-color:black; font-size:3em; padding:0.2em;">Material UI colors</span>
----
-
-
-layout: true
-class: shuriken-200 white 
-
-.blade1.bg-red.content.center[
-# I contemplated naming `split` as bunshin, the Japanese word for clone.
-]]
-.blade2.bg-green[.content.vertical-rl.center[
-# But I figured it wasn't a clone.
-]]
-.blade3.bg-deep-purple[.content.center[
-# I also wouldn't make you [remember words](https://slides.yihui.name/xaringan) from a reference you may not know.
-]]
-.blade4.bg-orange[.content.sideways-rl.center.vmiddle[
-# I lie.
-]]
-.hole.bg-black[.content.center.vmiddle[
-{{content}}
-]]
-
----
-
-class: hide-blade2 hide-blade3 hide-blade4 hide-hole
-
----
-
-class: hide-blade3 hide-blade4 hide-hole
-count: false
-
----
-
-class: hide-blade4 hide-hole
-count: false
-
----
-
-class: hide-hole
-count: false
-
----
-
-count: false 
-
-# This is 
-## `class: shuriken-200`
-
----
-
-class: shuriken-reverse-200
-
-# This is 
-## `class: shuriken-reverse-200`
-
----
-
-layout: false
-class: shuriken-reverse-100 white with-thick-border border-double
-
-
-.blade1.bg-red.content[
-# This is .blade1
-]]
-.blade2.bg-green[.content.vertical-rl[
-# This is .blade2
-]]
-.blade3.bg-deep-purple[.content[
-# This is .blade3
-]]
-.blade4.bg-orange[.content.sideways-rl[.center[
-# This is .blade4
-]]]
-.hole.bg-black[.content.center.vmiddle[
-# This is .hole 
-## `class: shuriken-100`
-## with 
-## `white`
-## `with-thick-border`
-## `border-double`
-]]
-
----
-
-class: shuriken-300 white with-border border-black
-
-
-.blade1.bg-red[.content[
-# To build this slide, define your shuriken class. Then your slide content should contain 
-```{r, eval=F}
-      .blade1[.content[]]      .blade4[.content[]]
-      .blade2[.content[]]      .hole[.content[]]
-      .blade3[.content[]]
-```
-]]
-.blade2.bg-green[.content.vertical-rl[
-# To write vertically
-```{r, eval=F}
-.blade2[.content.vertical-rl[]]
-```
-]]
-.blade3.bg-deep-purple[.content[
-```{r, eval=F}
-.blade2[.content.sideways-rl[]]
-```
-# Vertical writing may need manual fixes however. 
-## A future update may fix this but if you have a solution, feel free to put in a pull request `r anicon::faa("github", animate="vertical")`. 
-]]
-.blade4.bg-orange[.content.sideways-rl.center[
-# To write vertically the other way
-# &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓
-]]
-.hole.bg-black[.content.center[
-## `class: shuriken-300`
-]]
-
----
-
-class: bg-main1 center middle hide-slide-number
-
-.reveal-text.bg-main2[.pad1[
-.font4[Cell Sequential Reveal]
-]]
-
----
-
-layout: true
-class: split-three with-thick-border
-
-.column.bg-main1[.content[
-# Making split cells is great but to reveal it one slide at a time, I copied the content of the slide multiple times and deleted cell content that I wanted to hide. That's what I did for the slide [here](https://emi-tanaka-asc2018.netlify.com/#2).
-]]
-.column.bg-main2[.content[
-# When I made changes to one slide, I had to make the changes for other slides.
-<br>
-# .orange[It was painful.]
-<br>
-# Using the power of .yellow[ninjutsu] this is made much easier. 
-]]
-.column.bg-main3[.content[
-# Using .yellow[ninjutsu], you only need to maintain .yellow[one layout slide].
-<br>
-# It is a matter of then defining certain classes to reveal cells in subsequent slides.
-# .color-main1[Do you want to learn this power?]
-
-]]
-
----
-
-class: show-100
-
----
-
-class: show-110
-count: false
-
----
-
-count: false
-
----
-
-layout: false
-class: split-33 with-thick-border
-
-.column.bg-main1[.content.vmiddle[
-.center[
-# Layout Slide
-]
-<br><br>
-## This is where you should write out full the content of your slides. 
-]]
-.column[.content[
-# First you need to define your full slide structure.
-```{}
-layout: true
-class: split-four 
-.column.bg-main1[.content.vmiddle.center[
-# Content 1
-]]
-.column.bg-main2[.content.vmiddle.center[
-# Content 2
-]]
-.column.bg-main3[.content.vmiddle.center[
-# Content 3
-]]
-.column.bg-main4[.content.vmiddle.center[
-# Content 4
-]]
-```
-
-### Note: .vmiddle.center centers the content vertically and horizontally.
-### Note: you need to have a .content container, otherwise hide may not work
-]]
-
----
-
-class: split-33 with-thick-border
-
-.column.bg-main1[.content.vmiddle[
-# Revealing slide content from left to right column
-]]
-.column[.content[
-## In the subsequent slides define the classes as you want to show it
-```{}
----
-class: show-1000
----
-class: show-1100
-count: false
----
-class: show-1110
-count: false
----
-count: false
-```
-
-### Setting count:false stops from incrementing the slide number. 
-### .red[Set layout:false] for the next slide to stop layout template!
-]]
-
----
-
-class: split-33 with-thick-border
-
-.column.bg-main1[.content.vmiddle[
-# Column reveal can be whatever order you like.
-]]
-.column[.content[
-## This shows the inner two columns only first then the outer columns only in the next slide. 
-```{}
----
-class: show-0110
----
-class: show-1001
-count: false
-```
-## Or equivalently you can use 
-```{}
----
-class: hide-col1 hide-col4
----
-class: hide-col2 hide-col3
-count: false
-```
-
-
-]]
-
----
-
-layout: true
-class: split-two with-border
-
-.column[
-  .split-five[
-  .row.bg-main1[.content[
-### This slide can be set-up using the structure on the right.
-  ]]
-  .row.bg-main2[.content[
-### The cells are hidden using 
-### .yellow[class: hide-row3-col1 hide-row4-col1 hide-row5-col1]
-  ]]
-  .row.bg-main3[.content[
-### If you can see this cell but not below cells then this is: 
-### .yellow[class: hide-row4-col1 hide-row5-col1]
-  ]]
-  .row.bg-main4[.content[
-### Be sure to check out the corresponding [.purple[R markdown source]](https://github.com/emitanaka/ninja-theme) file for a better idea of how to use it for yourself.
-  ]]
-  .row.bg-main5[.content[
-### There is no need to define the class when revealing all but add .deep-orange[count: false] to stop slide count increment.
-  ]]
-]]
-.column[.content[
-
-```{}
-class: split-two with-border
-.column.bg-main1[
-  .split-five[
-  .row.bg-main1[.content[
-    Row 1, Column 1 content.
-  ]]
-  .row.bg-main2[.content[
-    Row 2, Column 1 content.
-  ]]
-  .row.bg-main3[.content[
-    Row 3, Column 1 content.
-  ]]
-  .row.bg-main4[.content[
-    Row 4, Column 1 content.
-  ]]
-  .row.bg-main5[.content[
-    Row 5, Column 1 content.
-  ]]
-]]
-.column[.content[
-  Second column content.
-]]
-```
-
-]]
-
----
-
-class: hide-row2-col1 hide-row3-col1 hide-row4-col1 hide-row5-col1
-
----
-
-class: hide-row3-col1 hide-row4-col1 hide-row5-col1
-count: false
-
----
-
-class: hide-row4-col1 hide-row5-col1
-count: false
-
----
-
-class: hide-row5-col1
-count: false
-
----
-
-count: false
-
----
-
-layout: true
-class: split-two with-border border-black
-
-.column[
-  .split-five[
-  .row.bg-main1[.content[
-### Now let's show the `gray` and `fade` features. 
-  ]]
-  .row.bg-main2[.content[
-### You can use it the same as `hide` but replace with `fade` or `gray`
-  ]]
-  .row.bg-main3[.content[
-### You can combine both as needed.
-  ]]
-  .row.bg-main4[.content[
-### Do check out the corresponding [.purple[R markdown source]](https://github.com/emitanaka/ninja-theme) file for a better idea of how to use it for yourself.
-  ]]
-  .row.bg-main5[.content[
-### Enjoy using `ninjutsu`.
-  ]]
-]]
-.column[.content[
-
-```{}
-class: split-two with-border
-.column.bg-main1[
-  .split-five[
-  .row.bg-main1[.content[
-    Row 1, Column 1 content.
-  ]]
-  .row.bg-main2[.content[
-    Row 2, Column 1 content.
-  ]]
-  .row.bg-main3[.content[
-    Row 3, Column 1 content.
-  ]]
-  .row.bg-main4[.content[
-    Row 4, Column 1 content.
-  ]]
-  .row.bg-main5[.content[
-    Row 5, Column 1 content.
-  ]]
-]]
-.column[.content[
-  Second column content.
-]]
-```
-
-]]
-
----
-class: fade-row2-col1 fade-row3-col1 fade-row4-col1 fade-row5-col1
----
-count: false
-class: fade-row1-col1 fade-row3-col1 fade-row4-col1 fade-row5-col1
----
-count: false
-class: fade-row1-col1 fade-row2-col1 fade-row4-col1 fade-row5-col1
----
-count: false
-class: fade-row1-col1 fade-row2-col1 fade-row3-col1 fade-row5-col1
----
-count: false
-class: fade-row1-col1 fade-row2-col1 fade-row3-col1 fade-row4-col1
----
-class: gray-row2-col1 gray-row3-col1 gray-row4-col1 gray-row5-col1
----
-count: false
-class: gray-row1-col1 gray-row3-col1 gray-row4-col1 gray-row5-col1
----
-count: false
-class: gray-row1-col1 gray-row2-col1 gray-row4-col1 gray-row5-col1
----
-count: false
-class: gray-row1-col1 gray-row2-col1 gray-row3-col1 gray-row5-col1
----
-count: false
-class: gray-row1-col1 gray-row2-col1 gray-row3-col1 gray-row4-col1
----
-
-layout: false
-class: split-five with-border border-black
-
-.column[.content[
-.split-five[
-.row.bg-main1[.content.center.vmiddle[
-# There is
-]]
-.row.bg-main2[.content[
-
-]]
-.row.bg-main3[.content[
-
-]]
-.row.bg-main4[.content[
-
-]]
-.row.bg-main5[.content[
-
-]]
-]]]
-.column[.content[
-.split-five[
-.row.bg-main1[.content.center.vmiddle[
-# support
-]]
-.row.bg-main2[.content[
-
-]]
-.row.bg-main3[.content[
-
-]]
-.row.bg-main4[.content.vmiddle.center[
-# Next up
-]]
-.row.bg-main5[.content[
-
-]]
-]]]
-.column[.content[
-.split-five[
-.row.bg-main1[.content.center.vmiddle[
-# upto 
-]]
-.row.bg-main2[.content[
-]]
-.row.bg-main3[.content.nopadding[
-.img-fill[![](bkgs/bg1.jpg)]
-]]
-
-.row.bg-main4[.content[
-
-]]
-.row.bg-main5[.content[
-
-]]
-]]]
-.column[.content[
-.split-five[
-.row.bg-main1[.content.center.vmiddle[
-# five-by-five
-]]
-.row.bg-main2[.content[
-
-]]
-.row.bg-main3[.content[
-
-]]
-.row.bg-main4[.content.vmiddle.center[
-# .yellow[images.]
-]]
-.row.bg-main5[.content[
-
-]]
-]]]
-.column[.content[
-.split-five[
-.row.bg-main1[.content.center.vmiddle[
-# cells. 
-]]
-.row.bg-main2[.content[
-
-]]
-.row.bg-main3[.content[
-
-]]
-.row.bg-main4[.content[
-
-]]
-.row.bg-main5[.content[
-
-]]
-]]]
-
-
----
-
-class: split-70 hide-slide-number
-background-image: url("bkgs/bg2.jpg")
-background-size: cover
-
-.column.slide-in-left[
-.sliderbox.vmiddle.shade_main.center[
-.font5[Image insertion]]]
-.column[
-]
-
----
-
-class: split-three
-
-.column.bg-main1[.content[
-# Image insertion can be tricky and a good solution is still in development. 
-
-.bottom_abs.content[
-# Here is some working solution to embed images.
-]
-]]
-.column[.split-33[
-.row[.content.nopadding[
-.img-fill[![](bkgs/bg1.jpg)]
-]]
-.row.bg-main1[.content[
-# Here we insert 
-```{}
-.row[.content.nopadding[
-.img-fill[![](bkgs/bg1.jpg)]
-]]
-```
-## We need the .yellow[nopadding] so it knows that images should not be padded.
-]]
-]]
-.column.bg-main1[.split-three[
-.row[.content[
-# Here we have
-```{}
-.row[.content.nopadding[
-.fig90[![](bkgs/bg1.jpg)]
-]]
-```
-]]
-.row[.content.nopadding[
-.fig90[![](bkgs/bg1.jpg)]
-]]
-.row.bg-main1[.content[
-## There may be some manual fixing needed for some cases although these should work well for most cases.
-]]
-]]
-
-
----
-
 class: bg-main1 
 
-# Soon to come 
+# Niðurstaða
 .font2[
-* .yellow[ninpo] for animated transition slides
-* explanation of .yellow[shinobi] theme with blue-centric colours and right overlay in title slide (hint: replace kunoichi with shinobi in the css)
-* and others...
+* .yellow[Jebbs] svona eridda maður
+* Við getum .yellow[ekki] nokkuð gert í þessu
+* þabbaraþannig... lestu bara skýrsluna!
 ]
 
 ## (or you may be able to figure out the features looking at the code)
