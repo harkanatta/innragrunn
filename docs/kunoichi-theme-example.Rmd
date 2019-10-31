@@ -55,6 +55,8 @@ class: split-two with-thick-border border-cyan
 `r anicon::cia("images/zeropoint_logo.jpg", animate="ring", size=6, anitype="parent-hover")`
 ]]
 ]]
+???
+Takið eftir kaðlinum
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -74,17 +76,20 @@ class: split-three with-thick-border
 # .orange[Örplast] .black[á við um allar plastagnir smærri en] 
 # .orange[<span class=" faa-tada animated " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);"> 5 mm</span>]
 <br>
-# .orange[Það eyðist ekki.] .black[Ber með sér eiturefni] og .orange[nýjar tegundir] .black[á milli hafsvæða]
+# .orange[Það eyðist á mjög löngum tíma] .black[sérstaklega í hafinu]
 <br>
 ### .black[Sumar gerðir] .red[fljóta] .black[en aðrar] .red[sökkva] .black[eða mara í hálfu kafi í sjónum].
 ]]
-.column.bg-main3[.content[
-# .white[Erfitt] .yellow[að sjá] .white[ og vandasamt að] .yellow[rannsaka].
+.column.bg-main4[.content[
+# .black[Erfitt] .yellow[að sjá] .black[ og vandasamt að] .yellow[rannsaka.]
 <br>
 .img-fill[![](images/animated_plot.gif)]
 # .orange[Hvaðan kemur örplast?]
 ]]
 
+???
+Hafið er kalt og dimmt og því ekki góðar aðstæður fyrir niðurbrot.
+Örplast getur borist langar leiðir í höfunum, bæði í yfirborðslögunum og á meira dýpi. Einhver mesti þéttleiki sem hefur fundist í botnseti var á Svalbarða.
 ---
 class: show-100
 
@@ -99,6 +104,7 @@ count: false
 count: false
 
 ???
+Erfitt að sjá og vandasamt að rannsaka. Við hjá Biopol fengum að kynnast því :)
 Við höfum ekki ennþá sammælst um standard aðferðir við að greina örplast
 
 ---
@@ -111,14 +117,14 @@ class: split-33
 # Helstu uppsprettur
 ]
 <br><br>
-## `r anicon::nia("Bifreiðahjólbarðar", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Vegmerkingar", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Málning", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Gervigras og leiksvæði", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Þvottur", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Snyrtivörur", animate="burst", anitype="parent-hover")`
-## `r anicon::nia("Veiðarfæri", animate="passing", speed="slow")`
-## `r anicon::nia("Rusl í fjörum", animate="passing", speed="slow")`
+## Bifreiðahjólbarðar
+## Vegmerkingar
+## Málning
+## Gervigras og leiksvæði
+## Þvottur
+## Snyrtivörur
+## Veiðarfæri
+## Rusl í fjörum
 ]]
 .column[.content[
 .center[
@@ -132,6 +138,7 @@ knitr::include_graphics("images/samansetning.png")
 
 ???
 Veiðarfæri þarf að rannsaka betur. Sum veiðarfæri trosna við notkun og losnar nælon ofl. örplast þannig beint í hafið. Þetta er ekki flókinn iðnaður þá að hann sé stórtækur og því ætti að vera hægt að fylgjast betur með því hve mikið af veiðarfærum er í umferð
+Fjörurnar eru eins og verksmiðjur sem mala örplast úr stærra plastrusli
 
 ---
 
@@ -142,13 +149,15 @@ class: split-two with-border border-black
 .column[
   .split-three[
   .row.bg-main1[.content[
-### Now let's show the `gray` and `fade` features. 
+### Helstu farleiðir örplasts á Íslandi eru í þéttbýli, þar sem það berst með ofanvatni í fráveitukerfin og þaðan til hafs.
+<br>
+### Í dreifbýli rennur ofanvatn að mestu í jarðveg.
   ]]
   .row.bg-main2[.content[
-### You can use it the same as `hide` but replace with `fade` or `gray`
+### Hægt er að skipta Íslandi upp í fjögur megin vatnasvæði. Á SV-horninu er vatnasvæði sem rennur út í Faxaflóa
   ]]
-  .row.bg-main3[.content[
-### You can combine both as needed.
+  .row.bg-main4[.content[
+### Þar sem mest umsvif eru þar er mest örplastmengun 
   ]]
 
 ]]
@@ -174,16 +183,15 @@ class: gray-row2-col1 gray-row3-col1
 ---
 count: false
 class: gray-row1-col1 gray-row3-col1 
+???
+
+Á suðvesturhorni landsins er vatnasvæði sem rennur í Faxaflóa (sjá mynd 3.1). Á því svæði býr yfir 3/4 hlutar landsmanna3 og þar er summa árdagsumferðar rúmir 3/4 hlutar á landsvísu. Flatarmál bygginga þar er yfir 50% flatarmáls allra bygginga á landsvísu74 en flatarmál málaðra flata eflaust enn meiri vegna byggingarhæðar. Flestir landsmenn fara til Reykjavíkur reglulega til að sækja þjónustu sem þar er í boði, nær allir vöruflutningar eru um svæðið og nærri allt millilandaflug. Þrír stórir slippir af fjórum eru á Höfuðborgarsvæðinu og í Grindavík. Það er því rík ástæða til að skoða þetta svæði betur.
+
 ---
 count: false
 class: gray-row1-col1 gray-row2-col1 
 
-
 ???
-Tegund skólphreinsunar skipt eftir fjórum flokkum náttúrulegra yfirborðsvatnshlota. Unnið upp úr samantekt á stöðu skólpmála á Íslandi árið 2014 [@Umhverfisstofnun2017].
-
-Þegar losun örplasts á Íslandi er skoðuð er rétt að taka suðvestur horn landsins út fyrir sviga. Þar sem helsta farleið örplasts er með rennandi vatni er hér notast við skiptingu íslenska vatnaumdæmisins í fjögur meginvatnasvæði73. Á suðvesturhorni landsins er vatnasvæði sem rennur í Faxaflóa (sjá mynd 3.1). Á því svæði býr yfir 3/4 hlutar landsmanna3 og þar er summa árdagsumferðar rúmir 3/4 hlutar á landsvísu. Flatarmál bygginga þar er yfir 50% flatarmáls allra bygginga á landsvísu74 en flatarmál málaðra flata eflaust enn meiri vegna byggingarhæðar. Flestir landsmenn fara til Reykjavíkur reglulega til að sækja þjónustu sem þar er í boði, nær allar vöruflutningar eru um svæðið og nærri allt millilandaflug. Þrír stórir slippir af fjórum eru á Höfuðborgarsvæðinu og í Grindavík. Það er því rík ástæða til að skoða þetta svæði betur.
-
 Mynd birt með góðfúslegu leyfi Alta
 ---
 
@@ -272,19 +280,19 @@ class: split-two with-border border-white
 .column.bg-main3[.content[
   .split-five[
  .row[.content[
-`Dekkjakurl berst til hafs í gegnum ræsi í þéttbýli en festist að mestu í jarðveginum við vegina`
+Dekkjakurl og vegmerkingar eru einna mest rannsakaða viðfangsefnið erlendis og yfirfærist ágætlega á Íslenskar aðstæður.
  ]]
   .row[.content[
-`Vegmerkingar berast með sömu leiðum til hafs`
+Gera þarf markaðsrannsókn til að meta betur plastinnihald í mismunandi húsamálningu og hlutfall málningar sem seld er til atvinnumálara og heimila.
  ]]
   .row[.content[
-`Útimálning berst einnig með affallsvatni gegnum ræsi en innimálningu er gjarnan hellt` `r anicon::nia("beint í sjóinn", animate="pulse")`
+Þegar skip eru í slipp er hætta á að málningarflyksur berist í sjó. Gera mætti athugun á starfsháttum stóru slippanna.
  ]]
   .row[.content[
-`Bæði eyðing á „grasinu“ sjálfu og dekkjakurl sem berst í ræsi`
+Tölur um losun frá þvotti á fatnaði úr gerviefnum eru komnar til ára sinna og því nauðsynlegt að uppfæra þær.
  ]]
    .row[.content[
- `Snyrtivörur; aðallega handsápa af verkstæðum `
+Örplast frá snyrtivörum er aðallega vegna handsápu af verkstæðum. 
  ]]
  ]
 ]]
@@ -300,84 +308,23 @@ Define the layout and for sequence hide the appropriate cell.
 
 class: hide-row2-col1 hide-row3-col1 hide-row4-col1 hide-row5-col1 with-thick-border border-white
 
-```{r dekk, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
-value=c(244,34,22,79) 
-losun=c(106,15,9,34)
-land=value-losun
-
-
-heiti <- c("Fólksbifreiðar ","Sendibifreiðar ","Hópbifreiðar ","Vörubifreiðar ")
-df <- data.frame(heiti,land,losun)
-df <- df[order(df$heiti),]
-nodes <- c(levels(df$heiti), 'Land','Haf')
-nodes <- as.data.frame(nodes)
-names(nodes) <- "name"
-
-a <- list()
-for (i in 1:nrow(df)) {
-  a[i] <- list(rbind(matrix(c(df[i,c(2,3)]))))
-}
-b <- do.call(c,a)
-value <- unlist(b)
-
-links <- 
-  data.frame(
-    source=rep(seq(0,length(heiti)-1),each=2),
-    target=c(rep(c(length(heiti),length(heiti)+1),length(heiti))),
-    value=value)
-	
-Sank <- list(nodes, links)
-names(Sank) <- c('nodes', 'links')
-sn <- sankeyNetwork(
-  Links = Sank$links,
-  Nodes = Sank$nodes,
-  Source = "source",
-  Target = "target",
-  Value = "value",
-  NodeID = "name",
-  units = "tonn",
-  colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"),
-  fontSize = 20,
-  nodeWidth = 30, width = "770px", height = "500px", fontFamily = "Courier"
-)
-rammi <- widgetframe::frameWidget(sn)
-rammi
-
+```{r vegmerkingar, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE,out.width = '50%'}
+mynd <- knitr::include_graphics("images/vegmerkingarorplast.png")
+mynd
 ```
 
 ???
 
 Stærsta uppspretta örplasts í umhverfinu á Íslandi, sem lagt var mat á, er tengd bifreiðaumferð. Slit á dekkjum og vegmerkingum er um 60-85% örplastslosunar á Íslandi. 
-Næst þar á eftir kemur húsamálning
-Skipamálning í stóru slippunum er stór uppspretta í mikilli nálægð við hafið (fer eftir vinnubrögðum við málun og ekki síst þrif hversu mikið lendir í hafinu)
+
 ---
 
 class: fade-row1-col1 hide-row3-col1 hide-row4-col1 hide-row5-col1 with-thick-border border-white
 count: false
 
-```{r vegmerkingar, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
-nodes <- c('Stærri sveitarfélög ','Minni sveitarfélög ','Vegagerðin ','Sprautuplast ','Vegamálning ','Uppspretta lægra mat ','Uppspretta hærra mat ','Losun í haf lægra mat','Losun í haf hærra mat')
-nodes <- as.data.frame(nodes)
-names(nodes) <- "name"
-#nodes$name <-  as.character(nodes$name)
-links <- data.frame(source=c(0,1,2,2,3,4,3,4,5,6),target=c(3,4,3,4,5,5,6,6,7,8),value=c(110,15,543,218,6,35,163,93,5.7,42.6))
-rass <- list(nodes,links)
-names(rass) <- c('nodes','links')
-sn <- sankeyNetwork(Links = rass$links,
-                    Nodes = rass$nodes,
-                    Source = "source",
-                    Target = "target",
-                    Value = "value",
-                    NodeID = "name",
-                    units = "Tonn",
-                    fontSize = 20,
-                    nodeWidth = 30,
-                    width = "770px",
-                    height = "500px",
-                    fontFamily = "Courier"
-                    )
-rammi <- widgetframe::frameWidget(sn)
-rammi
+```{r malun, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE,out.width = '50%'}
+mynd <- knitr::include_graphics("images/thok.png")
+mynd
 ```
 
 ---
@@ -385,100 +332,58 @@ rammi
 class: fade-row1-col1 fade-row2-col1 hide-row4-col1 hide-row5-col1 with-thick-border border-white
 count: false
 
-```{r malning, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
-value <- c(30,3.2)
-losun <- c(12,3.2)
-heiti <- c("Útimálning","Innimálning")
-land <- value-losun
-df <- data.frame(heiti,land,losun)
-df <- df[order(df$heiti),]
+```{r slippur, echo=FALSE, message=FALSE, warning=FALSE, fig.show='hold',out.width = '50%', dev.args=list(bg="transparent"),fig.cap='Samband skipslengdar og botnflatar. Kökuritið sýnir hlutfall botnflatar íslenskra fiskiskipa í þremur stærðarflokkum', fig.align='center' }
+par(mar = c(4.6, 6, 0, 0))
+Batar <- read.csv("skjol/batar.csv",fileEncoding = "UTF-8")
+litlir <- Batar[Batar$Lengd<15,]
+storir <- Batar[Batar$Lengd>30,]
+adrir <- Batar[!rownames(Batar) %in% c(rownames(litlir),rownames(storir)),]
+Batar$gerd <- ifelse(Batar$Lengd<15, "Smábátar",ifelse(Batar$Lengd>15 & Batar$Lengd<30,"Miðlungs","Stór skip"))
 
-library(networkD3)
-nodes <- c(levels(df$heiti), 'Land','Haf')
-nodes <- as.data.frame(nodes)
-names(nodes) <- "name"
+litura="#cb5600"
+liturb="#28c1ff"
 
-a <- list()
-for (i in 1:nrow(df)) {
-  a[i] <- list(rbind(matrix(c(df[i,c(2,3)]))))
-}
-b <- do.call(c,a)
-value <- unlist(b)
+yLab=expression(paste("Botnflötur ( ",m^2,")"))
+xLab="Lengd (m)"
+plot(Batar$Lengd,(Batar$WSA),type='n', ylab = "",xlab="")
+mtext(xLab,1,3,cex=2)
+mtext(yLab,2,3,cex=2)
+points(litlir$Lengd,(litlir$WSA),col=liturb, pch=18)
+points(adrir$Lengd,(adrir$WSA),col=1)
+points(storir$Lengd,(storir$WSA),col=litura, pch=19)
+legend("topleft",c("Smábátar <15m. N=972","Miðlungs N=75","Stór skip >30m. N=99"),col = c(liturb,1,litura),pch = c(18,1,19),cex=2,bty='n')
 
-links <- 
-  data.frame(
-    source=rep(seq(0,length(heiti)-1),each=2),
-    target=c(rep(c(length(heiti),length(heiti)+1),length(heiti))),
-    value=value)
+# landi <- data.frame(
+#   skr=c(2890,2889,2895,1868,2170,1902,2881,2882,2184),
+#   L = c(54.75,54.75,54.75,56.86,64.55,55.6,80,81,66.96),
+#   Breidd = c(13.5, 13.5, 13.5, 12.6, 12.8, 12.8, 17, 17, 13),
+#   Brt= c(1827,1827,1827,1469.7,1845,1521,3672,3672,2160),
+#   D = c(4.7, 4.7, 4.7, 7.7, 8, 8, 8.5, 8.5, 8.53)
+# )
+# 
+# landi2 <- Batar[Batar$Skipaskrárnúmer %in% landi$skr,]
+# points(landi2$Lengd,landi2$WSA,pch=13,cex=2,col=2) #Skip HBGranda
 
-
-Sank <- list(nodes, links)
-names(Sank) <- c('nodes', 'links')
-sn <- sankeyNetwork(
-  Links = Sank$links,
-  Nodes = Sank$nodes,
-  Source = "source",
-  Target = "target",
-  Value = "value",
-  NodeID = "name",
-  units = "tonn",
-  colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"),
-  fontSize = 20,
-  nodeWidth = 30, width = "770px", height = "500px", fontFamily = "Courier"
-)
-rammi <- widgetframe::frameWidget(sn)
-rammi
+par(mar = c(0, 0, 0, 0))
+require(plyr)
+kaka <- ddply(Batar,.(gerd),summarise,Flatarmal=sum(WSA))
+pie(kaka$Flatarmal,labels = kaka$gerd, border="grey",col = c("transparent",liturb,litura),cex=2,radius = 0.6)
 ```
 
 ---
 class: fade-row1-col1 fade-row2-col1 fade-row3-col1 hide-row5-col1 with-thick-border border-white
 count: false
 
-```{r gervigras, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, out.height="100%"}
-gervigras <- read.table("skjol/gervigras.csv",sep = ';',encoding = 'ISO 8859-1',header = T,dec = ',',stringsAsFactors = F)
-gervigras$Ferm. <- as.numeric(gervigras$Ferm.)
-gervigras$Gerð <- as.factor(gervigras$Gerð)
-#motta <- gervigras[regexpr("motta",gervigras$Tegund.grass.og.fylliefnis)!=(-1),] #minnkar tap á kurli um 50%
-#sand <- gervigras[regexpr("sand",gervigras$Tegund.grass.og.fylliefnis)!=(-1),]
-gervigras$studull <- c()
-gervigras[ rownames(gervigras[regexpr("motta",gervigras$Tegund.grass.og.fylliefnis)!=(-1),]),"studull"] <- "motta"
-gervigras[ rownames(gervigras[regexpr("sand",gervigras$Tegund.grass.og.fylliefnis)!=(-1),]),"studull"] <- "sandur"
-
-gervigras$kurl.lagt <- ifelse(is.na(gervigras$studull),gervigras$Ferm.*0.16,
-                              ifelse(gervigras$studull=="motta",gervigras$Ferm.*0.16*0.5,0))
-gervigras$kurl.hatt <- ifelse(is.na(gervigras$studull),gervigras$Ferm.*0.6,
-                              ifelse(gervigras$studull=="motta",gervigras$Ferm.*0.6*0.5,0))
-gervigras$slit.lagt <- gervigras$Ferm.*0.8*0.005
-gervigras$slit.hatt <- gervigras$Ferm.*1.4*0.008
-
-library(plyr)
-fermetrar <- ddply(gervigras,.(Gerð),summarise,m2=mean(Ferm.),slit.lagt=mean(slit.lagt)*0.001,slit.hatt=mean(slit.hatt)*0.001,kurl.lagt=mean(kurl.lagt)*0.001,kurl.hatt=mean(kurl.hatt)*0.001)
-
-# "Æfingavellir og smærri hús" "Keppnishús"
-# "Keppnisvellir"              "Sparkvellir"
-# "Sparkvellir (KSÍ)"
-library(networkD3)
-nodes <- c(as.character(fermetrar$Gerð),
-           "Slit lægra mat",
-           "Slit hærra mat",
-           "Gúmmíkurl lægra mat",
-           "Gúmmíkurl hærra mat")
-nodes <- as.data.frame(nodes)
-names(nodes) <- "name"
-#nodes$name <-  as.character(nodes$name)
-links <- data.frame(source=rep(c(0,1,2,3,4),each=4),target=rep(5:8,5),value=matrix(t(fermetrar[1:5,3:6])))
-rass <- list(nodes,links)
-names(rass) <- c('nodes','links')
-sn <- sankeyNetwork(Links = rass$links, Nodes = rass$nodes, Source = "source",Target = "target", Value = "value", NodeID = "name",units = "Tonn", fontSize = 20,nodeWidth = 30,width = "770px",height = "500px",fontFamily = "Courier")
-rammi <- widgetframe::frameWidget(sn)
-rammi
+```{r gervigras, echo=FALSE, message=FALSE, warning=FALSE,out.width = '50%'}
+mynd <- knitr::include_graphics("images/DEFALCO2018.jpg")
+mynd
 ```
 
 ---
 class: fade-row1-col1 fade-row2-col1 fade-row3-col1 fade-row4-col1 with-thick-border border-white
 count: false
 
-```{r homer, echo=FALSE, message=FALSE, warning=FALSE}
+```{r homer, echo=FALSE, message=FALSE, warning=FALSE,out.width = '50%'}
 mynd <- knitr::include_graphics("images/sapa.jpg")
 mynd
 ```
@@ -487,13 +392,9 @@ mynd
 layout: false
 class: bg-main1 
 
-# Niðurstaða
+# Kærar þakkir fyrir áheyrnina!
 .font2[
-* .yellow[Jebbs] svona eridda maður
-* Við getum .yellow[ekki] nokkuð gert í þessu
-* þabbaraþannig... lestu bara skýrsluna!
+* .yellow[Skýrsluna] má nálgast hér [`r anicon::faa('external-link-alt', animate='float', rtext='Örplastskýrsla')`](https://harkanatta.github.io/orplastskyrslaUAR/)
+* .yellow[Vinnusvæði] skýrslunnar er [`r anicon::faa("github", animate="vertical")` hér](https://github.com/harkanatta/orplastskyrslaUAR) 
 ]
 
-## (or you may be able to figure out the features looking at the code)
-
-## You'll find future updates [`r anicon::faa("github", animate="vertical")` here](https://github.com/emitanaka/ninja-theme) or <br>you'll hear about it [`r anicon::faa("twitter", animate="float")` here](https://twitter.com/statsgen).
