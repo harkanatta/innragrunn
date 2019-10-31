@@ -28,7 +28,7 @@ class: split-two with-thick-border border-cyan
   .split-two[
 .row.bg-white[.content.vmiddle[.center[
   .nopadding[
-.img-fill[![](images/Biopol_synataka.jpg)]
+.img-fill[![](https://raw.githubusercontent.com/harkanatta/innragrunn/master/docs/images/biopol_synataka.jpg)]
 ]
   ]]]
   .row.bg-white[.content.vmiddle[.center[
@@ -157,7 +157,7 @@ class: split-two with-border border-black
 ### Hægt er að skipta .white[Íslandi] upp í fjögur megin vatnasvæði. Á SV-horninu er vatnasvæði sem rennur út í .white[Faxaflóa]
   ]]
   .row.bg-main4[.content[
-### Þar sem mest .red[umsvif] eru þar er mest .red[örplastmengun] 
+## Þar sem mest .red[umsvif] eru þar er mest .red[örplastmengun] 
   ]]
 
 ]]
