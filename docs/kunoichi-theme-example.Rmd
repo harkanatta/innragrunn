@@ -1,6 +1,6 @@
 ---
 title: "Örplast í hafinu við Ísland"
-subtitle: "Helstu uppsprettur, magn og farleiðir"
+subtitle: "Helstu uppsprettur, magn og farleiðir í hafið"
 author:   |
   <br><br>
   <span class="noem">Valtýr Sigurðsson</span>
@@ -81,7 +81,7 @@ class: split-three with-thick-border
 ### .black[Sumar gerðir] .red[fljóta] .black[en aðrar] .red[sökkva] .black[eða mara í hálfu kafi í sjónum].
 ]]
 .column.bg-main4[.content[
-# .black[Erfitt] .yellow[að sjá] .black[ og vandasamt að] .yellow[rannsaka.]
+# .black[Erfitt] .yellow[að sjá] .black[ og vandasamt að rannsaka.]
 <br>
 .img-fill[![](images/animated_plot.gif)]
 # .orange[Hvaðan kemur örplast?]
@@ -149,15 +149,15 @@ class: split-two with-border border-black
 .column[
   .split-three[
   .row.bg-main1[.content[
-### Helstu farleiðir örplasts á Íslandi eru í þéttbýli, þar sem það berst með ofanvatni í fráveitukerfin og þaðan til hafs.
+### .orange[Helstu farleiðir] örplasts á Íslandi eru í þéttbýli, þar sem það berst með .orange[ofanvatni] í fráveitukerfin og þaðan til hafs.
 <br>
 ### Í dreifbýli rennur ofanvatn að mestu í jarðveg.
   ]]
   .row.bg-main2[.content[
-### Hægt er að skipta Íslandi upp í fjögur megin vatnasvæði. Á SV-horninu er vatnasvæði sem rennur út í Faxaflóa
+### Hægt er að skipta .white[Íslandi] upp í fjögur megin vatnasvæði. Á SV-horninu er vatnasvæði sem rennur út í .white[Faxaflóa]
   ]]
   .row.bg-main4[.content[
-### Þar sem mest umsvif eru þar er mest örplastmengun 
+### Þar sem mest .red[umsvif] eru þar er mest .red[örplastmengun] 
   ]]
 
 ]]
@@ -271,7 +271,10 @@ rammi
 
 ???
 fig.cap='Helstu uppsprettur örplasts á Íslandi og skipting þess eftir farleiðum í haf eða í jarðveg. Byggt á lægra mati.',
-
+Dekkjakurl berst til hafs í gegnum ræsi í þéttbýli en festist að mestu í jarðveginum við vegina. Stærsta uppspretta örplasts í umhverfinu á Íslandi, sem lagt var mat á, er tengd bifreiðaumferð. Slit á dekkjum og vegmerkingum er um 60-85% örplastslosunar á Íslandi.
+Vegmerkingar berast með sömu leiðum til hafs
+Útimálning berst einnig með affallsvatni gegnum ræsi en innimálningu er gjarnan hellt beint í niðurföll og berst þaðan í sjóinn
+Gervigras "mælt með því að á keppnisvöllum sé árlega bætt við 3-5 tonnum af fylliefni"
 ---
 
 layout: true
@@ -279,20 +282,20 @@ class: split-two with-border border-white
 
 .column.bg-main3[.content[
   .split-five[
- .row[.content[
-Dekkjakurl og vegmerkingar eru einna mest rannsakaða viðfangsefnið erlendis og yfirfærist ágætlega á Íslenskar aðstæður.
+ .row.bg-main1[.content[
+### Dekkjakurl og vegmerkingar eru einna mest rannsakaða viðfangsefnið erlendis og yfirfærist ágætlega á Íslenskar aðstæður.
  ]]
-  .row[.content[
-Gera þarf markaðsrannsókn til að meta betur plastinnihald í mismunandi húsamálningu og hlutfall málningar sem seld er til atvinnumálara og heimila.
+  .row.bg-main2[.content[
+### Gera þarf markaðsrannsókn til að meta betur plastinnihald í mismunandi húsamálningu og hlutfall málningar sem seld er til atvinnumálara og heimila.
  ]]
-  .row[.content[
-Þegar skip eru í slipp er hætta á að málningarflyksur berist í sjó. Gera mætti athugun á starfsháttum stóru slippanna.
+  .row.bg-main4[.content[
+### Þegar skip eru í slipp er hætta á að málningarflyksur berist í sjó. Gera mætti athugun á starfsháttum stóru slippanna.
  ]]
-  .row[.content[
-Tölur um losun frá þvotti á fatnaði úr gerviefnum eru komnar til ára sinna og því nauðsynlegt að uppfæra þær.
+  .row.bg-main2[.content[
+### Tölur um losun frá þvotti á fatnaði úr gerviefnum eru komnar til ára sinna og því nauðsynlegt að uppfæra þær.
  ]]
-   .row[.content[
-Örplast frá snyrtivörum er aðallega vegna handsápu af verkstæðum. 
+   .row.bg-main1[.content[
+### Örplast frá snyrtivörum er aðallega vegna handsápu af verkstæðum. 
  ]]
  ]
 ]]
