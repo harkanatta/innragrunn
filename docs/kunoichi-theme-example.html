@@ -19,7 +19,7 @@ class: center, middle, inverse, title-slide
 # Örplast í hafinu við Ísland
 ## Helstu uppsprettur, magn og farleiðir í hafið
 ### <br><br> <span class="noem">Valtýr Sigurðsson</span> <br><br> <img src="images/tvologohex.png" width="15%" align="right" /> <br><br>
-### <br><br>2019-09-05, Uppfært: 31. October 2019
+### <br><br>2019-09-05, Uppfært: 27. November 2019
 
 ---
 
@@ -208,8 +208,8 @@ Magn
 ]]]
 .column[.content[
 .center[
-<div id="htmlwidget-a8e1b7eadc51ca847e48" style="width:100%;height:681px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a8e1b7eadc51ca847e48">{"x":{"url":"kunoichi-theme-example_files/figure-html//widgets/widget_unnamed-chunk-2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-affdfedd9eebbec7aebd" style="width:100%;height:681px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-affdfedd9eebbec7aebd">{"x":{"url":"kunoichi-theme-example_files/figure-html//widgets/widget_unnamed-chunk-2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 
 ]]]
 
@@ -346,7 +346,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
